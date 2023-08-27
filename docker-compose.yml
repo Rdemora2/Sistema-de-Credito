@@ -20,3 +20,15 @@ services:
       - ./frontend:/app/frontend
     depends_on:
       - django
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: SistemaCredito_db
+      POSTGRES_USER: Rdemora2
+      POSTGRES_PASSWORD: rdemora2dbpassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

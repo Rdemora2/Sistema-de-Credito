@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'core_aplication.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'SistemaCredito_db',
+        'USER': 'Rdemora2',
+        'PASSWORD': 'rdemora2dbpassword',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
