@@ -5,12 +5,38 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    container_name: django_backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+        - ./backend:/app/backend
     ports:
-      - "8000:8000"
+        - "8000:8000"
+    environment:
+        - DEBUG=1
+        - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,[::1]
+        - CELERY_BROKER=redis://redis:6379/0
+        - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+        - db
+        - redis
+  celery:
+    container_name: celery
+    build:
+      context: ./backend
+    command: celery -A core_aplication worker -l INFO
     volumes:
       - ./backend:/app/backend
-
+    working_dir: /app/backend
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,[::1]
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+      - django
+      - redis
   vue:
+    container_name: vue_frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -20,8 +46,8 @@ services:
       - ./frontend:/app/frontend
     depends_on:
       - django
-
   db:
+    container_name: postgre_db
     image: postgres:13
     environment:
       POSTGRES_DB: SistemaCredito_db
@@ -29,6 +55,9 @@ services:
       POSTGRES_PASSWORD: rdemora2dbpassword
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  redis:
+    container_name: redis
+    image: "redis:latest"
 
 volumes:
   postgres_data:
