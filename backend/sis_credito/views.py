@@ -2,7 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import CreditForm
-from .serializers import CreditFormSerializer
+from .serializers import CreditFormSerializer, CreditFormFullSerializer
 from .tasks import send_credit_request
 
 class CreditFormViewSet(viewsets.ModelViewSet):
@@ -31,3 +31,7 @@ class CreditFormViewSet(viewsets.ModelViewSet):
         )
 
         return Response({'task_id': task.id}, status=status.HTTP_202_ACCEPTED)
+    
+class CreditFormFullViewSet(viewsets.ModelViewSet):
+    queryset = CreditForm.objects.all()
+    serializer_class = CreditFormFullSerializer
