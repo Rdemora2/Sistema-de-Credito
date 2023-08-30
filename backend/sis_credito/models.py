@@ -6,4 +6,4 @@ class CreditForm(models.Model):
     address = models.TextField()
     loan_amount = models.DecimalField(max_digits=10, decimal_places=2)
     approved = models.BooleanField(default=False)
-    credit_api_response = models.JSONField(null=False, blank=False)
+    credit_api_response = models.JSONField(null=False, blank=False, default=dict)
