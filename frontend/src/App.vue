@@ -26,6 +26,10 @@
       <button type="submit">Enviar</button>
     </form>
   </div>
+  <div>
+    <!-- Exibir o valor de credit_api_response -->
+    <p>Resultado da API: {{ creditApiResponse }}</p>
+  </div>
 </template>
 
 <script>
@@ -38,6 +42,7 @@ export default {
         endereco: "",
         valorEmprestimo: 0,
       },
+      creditApiResponse: null, // Inicialmente, o valor é nulo
     };
   },
   methods: {
@@ -52,9 +57,8 @@ export default {
         });
 
         const data = await response.json();
-        const id = data.id; // Obtem o ID retornado pela API
+        const id = data.id;
 
-        // Enviar outro POST com o ID para a segunda URL
         await fetch(`http://localhost:8000/api/sis_credito/${id}/call_task/`, {
           method: "POST",
           headers: {
@@ -65,6 +69,15 @@ export default {
             cpf: this.formData.cpf,
           }),
         });
+
+        await new Promise((resolve) => setTimeout(resolve, 23000));
+
+        const creditApiResponse = await fetch(
+          `http://localhost:8000/api/credit-forms/${id}/`
+        );
+        const creditApiData = await creditApiResponse.json();
+
+        this.creditApiResponse = creditApiData.credit_api_response;
       } catch (error) {
         console.error("Erro ao enviar formulário:", error);
       }
