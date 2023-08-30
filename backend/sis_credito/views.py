@@ -14,13 +14,15 @@ class CreditFormViewSet(viewsets.ModelViewSet):
         credit_form = self.get_object()
         serializer = self.get_serializer(instance=credit_form, data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()  # Salvando os dados submetidos
+        serializer.save()
 
-        # Chame a tarefa do Celery para processar a requisição à API
-        send_credit_request.delay({
-            "credit_form_id": credit_form.id,
-            "cpf": credit_form.cpf,
-            "full_name": credit_form.full_name
-        })
+        send_credit_request.apply_async(
+            args=[{
+                "credit_form_id": credit_form.id,
+                "cpf": credit_form.cpf,
+                "full_name": credit_form.full_name
+            }],
+            countdown=0
+        )
 
         return Response(serializer.data)
