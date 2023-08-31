@@ -17,6 +17,7 @@ A mesma passa por uma avaliação automatizada através de uma API de Análise d
 - Redis
 
 ## Front end
+- Javascript
 - Vue.js
 
 ## Container
