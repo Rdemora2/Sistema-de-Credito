@@ -13,7 +13,8 @@ A mesma passa por uma avaliação automatizada através de uma API de Análise d
 - Python
 - Django
 - Django rest framework
-- Django Celery
+- Celery
+- Redis
 
 ## Front end
 - Vue.js
@@ -34,6 +35,12 @@ docker compose build
 # subir os containers
 docker compose up
 ```
+
+# Portas utilizadas
+- Backend: 8000
+- Frontend: 8080
+- PostgreSQL: 5432
+- Redis: 6379
 
 # Autor
 
