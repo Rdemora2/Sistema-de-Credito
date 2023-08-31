@@ -35,7 +35,24 @@ docker compose build
 
 # subir os containers
 docker compose up
+
+# criar superuser do django admin
+abra um terminal na raiz do projeto
+docker exec -ti django_backend bash
+python manage.py createsuperuser
+preencha os campos e crie o usuário
+
+# acessar as respectivas urls
+Frontend: http://localhost:8080/
+backend: http://localhost:8000/
+
 ```
+
+# Urls importantes do backend
+ - Django admin: http://localhost:8000/admin/
+ - Api para consulta formulários preenchidos: http://localhost:8000/api/credit-forms/
+ - Endpoint de registro de novos formularios: http://localhost:8000/api/sis_credito/
+
 
 # Portas utilizadas
 - Backend: 8000
