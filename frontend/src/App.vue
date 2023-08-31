@@ -55,6 +55,12 @@
       </span>
     </p>
   </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>2023 - Roberto Moraes</p>
+    </div>
+  </footer>
 </template>
 
 <script>
@@ -122,7 +128,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 98vh;
   font-family: Arial, sans-serif;
 }
 
@@ -184,5 +190,21 @@ export default {
 .result {
   margin-top: 20px;
   font-weight: bold;
+}
+
+/* Estilos para o Footer */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 99%;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>
