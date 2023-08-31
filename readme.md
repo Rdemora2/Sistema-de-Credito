@@ -6,7 +6,7 @@ Desenvolvimento de uma interface web onde pessoas possam solicitar propostas de 
 A mesma passa por uma avaliação automatizada através de uma API de Análise de Crédito(https://loan-processor.digitalsys.com.br/swagger/index.html), caso a API retorne o status de não aprovado, a proposta é negada automaticamente, caso seja aprovada, é disponibilizada para avaliação humana.
 
 ## Layout web
-> :construction: Em construção :construction:
+![image](https://github.com/Rdemora2/Sistema-de-Credito/assets/103211332/9c15f102-c590-4839-8fbf-12b6e98382a2)
 
 # Tecnologias utilizadas
 ## Back end
