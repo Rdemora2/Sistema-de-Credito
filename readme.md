@@ -1,7 +1,6 @@
 # Sistema de crédito
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 
-# Sobre o projeto
+## Sobre o projeto
 Desenvolvimento de uma interface web onde pessoas possam solicitar propostas de crédito.
 A mesma passa por uma avaliação automatizada através de uma API de Análise de Crédito(https://loan-processor.digitalsys.com.br/swagger/index.html), caso a API retorne o status de não aprovado, a proposta é negada automaticamente, caso seja aprovada, é disponibilizada para avaliação humana.
 
